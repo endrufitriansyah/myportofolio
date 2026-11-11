@@ -148,13 +148,21 @@
 
           const statusLabel = (item.category || '').toLowerCase() === 'belum selesai' ? 'Belum Selesai' : 'Selesai';
 
+          // Bersihkan tag HTML dari pratinjau teks di daftar arsip
+          const cleanDesc = (item.description || '')
+            .replace(/<table[\s\S]*?<\/table>/gi, '[Tabel Data]')
+            .replace(/<[^>]*>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+          const shortDesc = cleanDesc.length > 150 ? cleanDesc.slice(0, 150) + '...' : cleanDesc;
+
           return `
             <article class="archive-row" onclick="window.location.href='detail.html?id=${encodeURIComponent(item.id)}'" role="link" tabindex="0" onkeydown="if(event.key==='Enter') window.location.href='detail.html?id=${encodeURIComponent(item.id)}'">
               <span class="row-num">${serial}</span>
               <span class="row-meet">${meetLabel}</span>
               <div class="row-title">
                 ${escapeHTML(item.title)}
-                <small>${escapeHTML(item.description || '')}</small>
+                <small>${escapeHTML(shortDesc)}</small>
               </div>
               <span class="row-date">${dateStr}</span>
               <div class="row-status">
@@ -313,9 +321,19 @@
     const dateEl = document.getElementById('detail-date');
     if (dateEl) dateEl.textContent = formatDate(item.due_date || item.created_at);
 
-    // Deskripsi
+    // Soal Tugas (Mendukung Teks Biasa & Tabel HTML)
     const descEl = document.getElementById('detail-desc');
-    if (descEl) descEl.textContent = item.description || '-';
+    if (descEl) {
+      const desc = item.description || '-';
+      if (desc.includes('<table') || desc.includes('<div') || desc.includes('<p') || desc.includes('<ul') || desc.includes('<ol')) {
+        descEl.innerHTML = desc;
+      } else {
+        descEl.innerHTML = desc
+          .split('\n\n')
+          .map((p) => `<p style="margin-bottom: 12px; line-height: var(--leading-relaxed);">${escapeHTML(p).replace(/\n/g, '<br>')}</p>`)
+          .join('');
+      }
+    }
 
     // Tujuan Pembelajaran
     const objectivesEl = document.getElementById('detail-objectives');
