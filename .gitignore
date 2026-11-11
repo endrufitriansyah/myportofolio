@@ -1,0 +1,9 @@
+# Editor & OS
+.vscode/
+Thumbs.db
+.DS_Store
+
+# Skrip Admin & Migrasi Privat
+tugas-sistem-operasi/setup-admin.sql
+tugas-sistem-operasi/schema.sql
+*.env

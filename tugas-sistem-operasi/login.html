@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autentikasi Administrator: Academic Archive</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../Asset/ft.png">
+  <link rel="shortcut icon" href="../Asset/ft.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/swiss.css">
+
+  <!-- Immediate Theme Initializer & Scripts -->
+  <script src="js/theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Jika sudah login sebagai admin, langsung redirect ke dashboard
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (window.ArchiveAuth && await window.ArchiveAuth.isAdmin()) {
+        window.location.replace('admin.html');
+      }
+    });
+  </script>
+</head>
+
+<body style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-brand">
+        <a href="index.html" style="display: flex; align-items: center; gap: 8px;">
+          <span style="display: inline-block; width: 10px; height: 10px; background: var(--accent);"></span>
+          <span style="font-size: 1.05rem; letter-spacing: -0.02em;">ACADEMIC ARCHIVE</span>
+        </a>
+        <span class="topbar-badge">GERBANG AUTENTIKASI</span>
+      </div>
+
+      <nav class="topbar-nav">
+        <a href="index.html" class="nav-link">&larr; Kembali ke Arsip Publik</a>
+        <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Ganti Mode Tampilan">
+          <!-- Icon injected by theme.js -->
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN LOGIN FORM -->
+  <main class="container" style="display: flex; align-items: center; justify-content: center; padding-top: var(--space-12); padding-bottom: var(--space-16); flex: 1;">
+    <div style="width: 100%; max-width: 420px; background: var(--surface); border: var(--hairline-strong); padding: var(--space-8); border-radius: var(--radius-sm); box-shadow: var(--shadow-dropdown);">
+
+      <div style="border-bottom: var(--hairline); padding-bottom: var(--space-4); margin-bottom: var(--space-6);">
+        <span class="type-micro" style="color: var(--accent); display: block; margin-bottom: 4px;">PORTAL PENGELOLA</span>
+        <h1 class="type-h2">Login Administrator</h1>
+      </div>
+
+      <div id="login-error" style="display: none; padding: 10px 14px; background: var(--status-review-bg); border: 1px solid var(--status-review); color: var(--status-review); font-family: var(--font-mono); font-size: var(--text-small); border-radius: var(--radius-sm); margin-bottom: 16px;">
+        <!-- Error text -->
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email" class="form-label">Email Administrator</label>
+          <input type="email" id="login-email" class="form-control" placeholder="admin@domain.com" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="login-password" class="form-label">Kata Sandi</label>
+          <input type="password" id="login-password" class="form-control" placeholder="Masukkan kata sandi admin" required autocomplete="current-password">
+        </div>
+
+        <div style="margin-top: var(--space-6);">
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Masuk ke Portal Admin
+          </button>
+        </div>
+      </form>
+
+      <div style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: var(--hairline); text-align: center;">
+        <a href="index.html" class="type-meta" style="color: var(--text-secondary);">
+          &larr; Kembali ke Arsip Publik
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="archive-footer">
+    <div class="container footer-inner">
+      <div>
+        &copy; 2026 Academic Archive. Sistem Operasi: Endru Aidil Fitriansyah.
+      </div>
+      <div>
+        <a href="index.html">Arsip Publik</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      const errorEl = document.getElementById('login-error');
+      const submitBtn = this.querySelector('button[type="submit"]');
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Memverifikasi Kredensial...';
+      }
+      errorEl.style.display = 'none';
+
+      const result = await window.ArchiveAuth.login(email, password);
+      if (result.success) {
+        const params = new URLSearchParams(window.location.search);
+        const target = params.get('redirect') || 'admin.html';
+        window.location.replace(target);
+      } else {
+        errorEl.textContent = result.message || 'Gagal melakukan autentikasi.';
+        errorEl.style.display = 'block';
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Masuk ke Portal Admin';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

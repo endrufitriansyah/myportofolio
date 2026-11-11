@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Tugas: Academic Archive</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../Asset/ft.png">
+  <link rel="shortcut icon" href="../Asset/ft.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/swiss.css">
+
+  <!-- Immediate Theme Initializer -->
+  <script src="js/theme.js"></script>
+</head>
+
+<body>
+
+  <!-- TOPBAR NAVIGATION -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-brand">
+        <a href="index.html" style="display: flex; align-items: center; gap: 8px;">
+          <span style="display: inline-block; width: 10px; height: 10px; background: var(--accent);"></span>
+          <span style="font-size: 1.05rem; letter-spacing: -0.02em;">ACADEMIC ARCHIVE</span>
+        </a>
+        <span class="topbar-badge">SISTEM OPERASI</span>
+      </div>
+
+      <nav class="topbar-nav">
+        <a href="index.html" class="nav-link">&larr; Kembali ke Daftar Arsip</a>
+        <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Ganti Mode Tampilan">
+          <!-- Icon injected by theme.js -->
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="container-narrow" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
+
+    <div id="assignment-detail-view">
+
+      <!-- BREADCRUMB -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Arsip Tugas</a>
+        <span class="breadcrumb-separator">/</span>
+        <span id="breadcrumb-current" class="breadcrumb-current">Memuat...</span>
+      </nav>
+
+      <!-- EDITORIAL TITLE & META -->
+      <header style="margin-bottom: var(--space-6);">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-2);">
+          <span id="detail-code" class="type-micro" style="color: var(--accent); letter-spacing: 0.15em;">SO-01</span>
+          <span id="detail-status" class="badge-status published">
+            <span class="badge-dot"></span>
+            Selesai
+          </span>
+        </div>
+
+        <h1 id="detail-title" class="type-h1" style="margin-bottom: var(--space-4);">
+          Memuat Judul Tugas...
+        </h1>
+
+        <!-- Metadata Strip -->
+        <div class="meta-strip">
+          <div class="meta-item">
+            <span>Nomor:</span>
+            <strong id="detail-meeting">-</strong>
+          </div>
+          <div class="meta-item">
+            <span>Tanggal:</span>
+            <strong id="detail-date">-</strong>
+          </div>
+          <div class="meta-item">
+            <span>Penyusun:</span>
+            <strong>Endru Aidil Fitriansyah</strong>
+          </div>
+        </div>
+      </header>
+
+      <!-- SECTION: SOAL TUGAS -->
+      <section style="margin-bottom: var(--space-8);">
+        <h2 class="type-micro" style="color: var(--text-muted); margin-bottom: var(--space-2);">SOAL TUGAS</h2>
+        <p id="detail-desc" class="type-body" style="font-size: var(--text-body-lg); line-height: var(--leading-relaxed); color: var(--text-primary); margin-bottom: var(--space-5);">
+          -
+        </p>
+
+        <div id="detail-objectives-box" style="background: var(--surface); border: var(--hairline); padding: var(--space-4) var(--space-5); border-radius: var(--radius-sm);">
+          <h3 class="type-micro" style="color: var(--accent); margin-bottom: var(--space-3);">CATATAN</h3>
+          <ul id="detail-objectives" style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: var(--text-body); color: var(--text-secondary);">
+            <!-- Objectives injected here -->
+          </ul>
+        </div>
+      </section>
+
+      <!-- SECTION: JAWABAN & PEMBAHASAN -->
+      <section style="margin-bottom: var(--space-8); border-top: var(--hairline); padding-top: var(--space-6);">
+        <h2 class="type-h2" style="margin-bottom: var(--space-4);">Jawaban & Pembahasan</h2>
+        <div id="detail-discussion" class="type-body" style="color: var(--text-body);">
+          <!-- Discussion paragraphs -->
+        </div>
+
+        <!-- Result Box -->
+        <div style="margin-top: var(--space-6); padding: var(--space-4) var(--space-5); background: var(--surface); border-left: 3px solid var(--accent); border-top: var(--hairline); border-right: var(--hairline); border-bottom: var(--hairline);">
+          <span class="type-micro" style="color: var(--accent); display: block; margin-bottom: 4px;">KESIMPULAN</span>
+          <p id="detail-result" class="type-body" style="font-size: var(--text-small); color: var(--text-primary); font-weight: 500;">
+            -
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION: PRATINJAU GAMBAR & GRAFIK TUGAS -->
+      <section id="detail-images-section" style="display: none; margin-bottom: var(--space-8); border-top: var(--hairline); padding-top: var(--space-6);">
+        <h2 class="type-h2" style="margin-bottom: var(--space-4);">Gambar & Tabel Jawaban</h2>
+        <div id="detail-images-container" style="display: flex; flex-direction: column; gap: var(--space-6);">
+          <!-- Gambar hasil upload disisipkan otomatis di sini -->
+        </div>
+      </section>
+
+      <!-- SECTION: DOCUMENT VIEWER & DOWNLOAD -->
+      <section style="margin-bottom: var(--space-8); border-top: var(--hairline); padding-top: var(--space-6);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4);">
+          <h2 class="type-h2">Lampiran File</h2>
+          <button type="button" onclick="window.print()" class="btn btn-secondary btn-sm no-print">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            Cetak Halaman
+          </button>
+        </div>
+
+        <!-- Document Preview Window -->
+        <div class="doc-preview-box">
+          <div class="doc-preview-header">
+            <span>DOKUMEN_LAPORAN_RESMI.PDF</span>
+            <span style="color: var(--text-muted); font-size: var(--text-micro);">DIVERIFIKASI</span>
+          </div>
+          <div style="background: var(--surface-muted); padding: 48px 24px; text-align: center; border-bottom: var(--hairline);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 16px; color: var(--accent);">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <p class="font-heading" style="font-size: var(--text-h3); margin-bottom: 16px;">Pratinjau Dokumen Laporan</p>
+            <button onclick="alert('Simulasi: Dokumen PDF terbuka pada tab terpisah.');" class="btn btn-primary btn-sm">
+              Buka PDF Penuh
+            </button>
+          </div>
+        </div>
+
+        <!-- Download List -->
+        <div id="detail-files">
+          <!-- Files injected here -->
+        </div>
+      </section>
+
+      <!-- SECTION: PREV / NEXT NAVIGATION -->
+      <nav class="nav-prev-next">
+        <a id="nav-prev" href="#" style="padding: var(--space-4); border: var(--hairline); background: var(--surface); border-radius: var(--radius-sm); text-align: left; transition: border-color var(--transition-fast);">
+          <span class="nav-label type-micro" style="color: var(--text-muted); display: block; margin-bottom: 4px;">&larr; TUGAS SEBELUMNYA</span>
+          <strong class="nav-title font-heading" style="font-size: var(--text-small); color: var(--text-primary); display: block;">-</strong>
+        </a>
+        <a id="nav-next" href="#" style="padding: var(--space-4); border: var(--hairline); background: var(--surface); border-radius: var(--radius-sm); text-align: right; transition: border-color var(--transition-fast);">
+          <span class="nav-label type-micro" style="color: var(--text-muted); display: block; margin-bottom: 4px;">TUGAS BERIKUTNYA &rarr;</span>
+          <strong class="nav-title font-heading" style="font-size: var(--text-small); color: var(--text-primary); display: block;">-</strong>
+        </a>
+      </nav>
+
+      <!-- SECTION: REVIEW & FEEDBACK DOSEN -->
+      <section style="border-top: var(--hairline-strong); padding-top: var(--space-8);">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-6);">
+          <div>
+            <h2 class="type-h2">Komentar & Catatan Dosen</h2>
+          </div>
+          <span class="type-meta" style="color: var(--text-secondary);"><span id="comment-count">0</span> Komentar</span>
+        </div>
+
+        <!-- Existing Comments Feed -->
+        <div id="comment-list" class="comment-feed">
+          <!-- Comments injected here -->
+        </div>
+
+        <!-- Add Comment Form -->
+        <div style="margin-top: var(--space-8); padding: var(--space-6); background: var(--surface); border: var(--hairline); border-radius: var(--radius-sm);">
+          <h3 class="type-h3" style="margin-bottom: var(--space-4);">Tulis Komentar</h3>
+
+          <div id="comment-feedback" style="display: none; padding: 10px 14px; background: var(--surface-muted); border: var(--hairline-strong); color: var(--text-primary); font-family: var(--font-mono); font-size: var(--text-small); border-radius: var(--radius-sm); margin-bottom: 16px;">
+            Komentar berhasil dikirim dan menunggu persetujuan.
+          </div>
+
+          <form id="comment-form">
+            <div class="form-group">
+              <label for="comment-author" class="form-label">Nama Dosen</label>
+              <input type="text" id="comment-author" class="form-control" placeholder="Nama Dosen..." required>
+            </div>
+
+            <div class="form-group">
+              <label for="comment-content" class="form-label">Isi Komentar</label>
+              <textarea id="comment-content" class="form-control" rows="4" placeholder="Tuliskan catatan, nilai, atau masukan untuk tugas ini..." required></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn btn-primary">
+                Kirim Komentar
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="archive-footer">
+    <div class="container footer-inner">
+      <div>
+        &copy; 2026 Academic Archive. Sistem Operasi: Endru Aidil Fitriansyah (NIM 2503010054).
+      </div>
+      <div style="display: flex; gap: var(--space-4);">
+        <a href="index.html">Daftar Arsip</a>
+        <a href="../index.html">Portofolio Utama</a>
+        <a href="mailto:2503010054@unper.ac.id">Kontak Mahasiswa</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/public.js"></script>
+</body>
+</html>

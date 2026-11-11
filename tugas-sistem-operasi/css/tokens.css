@@ -1,0 +1,142 @@
+/**
+ * SWISS EDITORIAL DESIGN TOKENS
+ * Academic Archive - Sistem Operasi
+ * Precision, minimalism, and typographic hierarchy.
+ */
+
+:root {
+  /* =========================================================================
+     LIGHT MODE PALETTE (Swiss Paper / Archival Publication)
+     ========================================================================= */
+  --bg: #F5F4EF;
+  --surface: #FFFFFF;
+  --surface-muted: #ECEAE3;
+  --surface-elevated: #FFFFFF;
+
+  --text-primary: #171717;
+  --text-secondary: #77766F;
+  --text-muted: #9E9C94;
+  --text-inverse: #F5F4EF;
+
+  --border: #E5E3DC;
+  --border-strong: #CDC9BD;
+  --border-focus: #171717;
+
+  /* Accent: International Swiss Vermilion */
+  --accent: #C83D32;
+  --accent-hover: #A82E25;
+  --accent-subtle: rgba(200, 61, 50, 0.08);
+  --accent-border: rgba(200, 61, 50, 0.25);
+  --accent-contrast: #FFFFFF;
+
+  /* Editorial Status Indicators (Swiss Monochromatic Palette) */
+  --status-published: #171717;
+  --status-published-bg: #ECEAE3;
+  --status-draft: #5A5852;
+  --status-draft-bg: #F0EEE8;
+  --status-review: #C83D32;
+  --status-review-bg: rgba(200, 61, 50, 0.08);
+
+  /* =========================================================================
+     TYPOGRAPHY SCALE
+     ========================================================================= */
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace;
+
+  /* Type Sizes (Fluid & Modular) */
+  --text-display: clamp(2.25rem, 5vw, 3.75rem); /* 36px to 60px */
+  --text-h1: clamp(1.625rem, 3.5vw, 2.25rem);    /* 26px to 36px */
+  --text-h2: clamp(1.25rem, 2.5vw, 1.5rem);      /* 20px to 24px */
+  --text-h3: 1.125rem;                            /* 18px */
+  --text-body-lg: 1.0625rem;                      /* 17px */
+  --text-body: 0.9375rem;                         /* 15px */
+  --text-small: 0.8125rem;                        /* 13px */
+  --text-micro: 0.6875rem;                        /* 11px */
+
+  /* Leading */
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* Tracking */
+  --tracking-tight: -0.035em;
+  --tracking-normal: -0.01em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* =========================================================================
+     SPACING & LAYOUT GRID (4px / 8px Baseline)
+     ========================================================================= */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  --container-max: 1200px;
+  --container-narrow: 840px;
+  --container-pad: clamp(16px, 4vw, 32px);
+
+  /* Geometry & Precision */
+  --radius-sharp: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-box: 6px;
+
+  /* Hairlines and Dividers */
+  --hairline: 1px solid var(--border);
+  --hairline-strong: 1px solid var(--border-strong);
+  --hairline-accent: 2px solid var(--accent);
+
+  /* Micro Shadows (Restrained and Subdued) */
+  --shadow-subtle: 0 1px 2px rgba(23, 23, 23, 0.04);
+  --shadow-dropdown: 0 4px 12px rgba(23, 23, 23, 0.08);
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-normal: 200ms ease;
+}
+
+/* ===========================================================================
+   DARK MODE PALETTE (Swiss Monochromatic Technical Tone)
+   =========================================================================== */
+[data-theme="dark"] {
+  --bg: #171717;
+  --surface: #222222;
+  --surface-muted: #2A2A2A;
+  --surface-elevated: #282828;
+
+  --text-primary: #F5F4EF;
+  --text-secondary: #A5A39C;
+  --text-muted: #74726B;
+  --text-inverse: #171717;
+
+  --border: #393939;
+  --border-strong: #4A4A4A;
+  --border-focus: #F5F4EF;
+
+  --accent: #E16A60;
+  --accent-hover: #F08278;
+  --accent-subtle: rgba(225, 106, 96, 0.12);
+  --accent-border: rgba(225, 106, 96, 0.35);
+  --accent-contrast: #171717;
+
+  --status-published: #F5F4EF;
+  --status-published-bg: #2A2A2A;
+  --status-draft: #9E9D96;
+  --status-draft-bg: #262626;
+  --status-review: #E16A60;
+  --status-review-bg: rgba(225, 106, 96, 0.12);
+
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-dropdown: 0 6px 16px rgba(0, 0, 0, 0.4);
+}

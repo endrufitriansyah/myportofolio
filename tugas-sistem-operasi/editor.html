@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor Tugas: Academic Archive</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../Asset/ft.png">
+  <link rel="shortcut icon" href="../Asset/ft.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/swiss.css">
+
+  <!-- Immediate Theme Initializer & Route Guard -->
+  <script src="js/theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    window.ArchiveAuth.requireAuth();
+  </script>
+</head>
+
+<body>
+
+  <!-- TOPBAR NAVIGATION -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-brand">
+        <a href="admin.html" style="display: flex; align-items: center; gap: 8px;">
+          <span style="display: inline-block; width: 10px; height: 10px; background: var(--accent);"></span>
+          <span style="font-size: 1.05rem; letter-spacing: -0.02em;">PORTAL MAHASISWA</span>
+        </a>
+        <span class="topbar-badge">EDITOR DOKUMEN</span>
+      </div>
+
+      <nav class="topbar-nav">
+        <a href="admin.html" class="nav-link">&larr; Batalkan & Kembali ke Dashboard</a>
+        <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Ganti Mode Tampilan">
+          <!-- Icon injected by theme.js -->
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="container-narrow" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb">
+      <a href="admin.html">Dashboard</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Editor Tugas</span>
+    </nav>
+
+    <!-- FORM HEADER -->
+    <header style="margin-bottom: var(--space-6); border-bottom: var(--hairline-strong); padding-bottom: var(--space-4);">
+      <span class="type-micro" style="color: var(--accent); display: block; margin-bottom: 4px;">FORMULIR TUGAS</span>
+      <h1 id="editor-page-title" class="type-h1">Tambah Dokumen Tugas Baru</h1>
+    </header>
+
+    <!-- ASSIGNMENT FORM -->
+    <form id="assignment-form">
+
+      <!-- SECTION 1: INFORMASI TUGAS -->
+      <fieldset style="border: none; margin-bottom: var(--space-8);">
+        <legend class="type-h3" style="margin-bottom: var(--space-4); border-bottom: var(--hairline); padding-bottom: var(--space-2); width: 100%;">
+          1. Informasi Tugas
+        </legend>
+
+        <div class="form-group">
+          <label for="field-title" class="form-label">Judul Lengkap Tugas</label>
+          <input type="text" id="field-title" class="form-control" placeholder="Contoh: Algoritma Penjadwalan Disk (Disk Scheduling)" required>
+        </div>
+
+        <div class="swiss-grid" style="gap: var(--space-4);">
+          <div style="grid-column: span 4;" class="form-group">
+            <label for="field-meeting" class="form-label">Nomor Tugas</label>
+            <input type="number" id="field-meeting" class="form-control" min="1" max="16" value="1" required>
+          </div>
+
+          <div style="grid-column: span 4;" class="form-group">
+            <label for="field-category" class="form-label">Status Tugas</label>
+            <select id="field-category" class="form-control">
+              <option value="Selesai">Selesai</option>
+              <option value="Belum Selesai">Belum Selesai</option>
+            </select>
+          </div>
+
+          <div style="grid-column: span 4;" class="form-group">
+            <label for="field-status" class="form-label">Akses Tugas</label>
+            <select id="field-status" class="form-control">
+              <option value="published">Publik (Bisa dilihat)</option>
+              <option value="draft">Privat (Hanya saya)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="field-date" class="form-label">Tanggal Pengerjaan</label>
+          <input type="date" id="field-date" class="form-control" style="font-family: var(--font-mono);">
+        </div>
+      </fieldset>
+
+      <!-- SECTION 2: SOAL & JAWABAN -->
+      <fieldset style="border: none; margin-bottom: var(--space-8);">
+        <legend class="type-h3" style="margin-bottom: var(--space-4); border-bottom: var(--hairline); padding-bottom: var(--space-2); width: 100%;">
+          2. Isi Tugas & Pembahasan
+        </legend>
+
+        <div class="form-group">
+          <label for="field-desc" class="form-label">Soal Tugas</label>
+          <textarea id="field-desc" class="form-control" rows="3" placeholder="Tuliskan soal atau deskripsi tugas di sini..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="field-objectives" class="form-label">Catatan Tambahan (opsional, pisahkan baris baru)</label>
+          <textarea id="field-objectives" class="form-control" rows="2" placeholder="Catatan tambahan bila ada..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="field-discussion" class="form-label">Jawaban & Langkah Pengerjaan</label>
+          <textarea id="field-discussion" class="form-control" rows="8" placeholder="Tuliskan jawaban, langkah perhitungan, tabel, atau pembahasan tugas..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="field-result" class="form-label">Kesimpulan</label>
+          <input type="text" id="field-result" class="form-control" placeholder="Contoh: Algoritma LOOK adalah yang paling efisien dengan 304 track.">
+        </div>
+      </fieldset>
+
+      <!-- SECTION 3: UPLOAD GAMBAR ATAU FILE -->
+      <fieldset style="border: none; margin-bottom: var(--space-10);">
+        <legend class="type-h3" style="margin-bottom: var(--space-4); border-bottom: var(--hairline); padding-bottom: var(--space-2); width: 100%;">
+          3. Upload Gambar
+        </legend>
+
+        <!-- Swiss Minimalist Dropzone -->
+        <div id="editor-dropzone" class="dropzone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 12px; color: var(--accent);">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <p class="font-heading" style="font-size: var(--text-small); font-weight: 600; margin-bottom: 4px;">
+            Pilih atau Tarik Gambar ke Sini
+          </p>
+          <p class="type-meta" style="color: var(--text-muted); font-size: var(--text-micro);">
+            PNG, JPG, PDF (Gambar tabel/grafik akan otomatis tampil di halaman postingan)
+          </p>
+          <input type="file" id="file-input" multiple accept=".pdf,.docx,.pptx,.png,.jpg,.jpeg" style="display: none;">
+        </div>
+
+        <!-- Staged Files Preview List -->
+        <div style="margin-top: var(--space-4);">
+          <span class="type-micro" style="color: var(--text-secondary); display: block; margin-bottom: 8px;">File yang dipilih:</span>
+          <div id="staged-files-list">
+            <!-- Files injected dynamically by admin.js -->
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- FORM ACTIONS -->
+      <div style="display: flex; align-items: center; justify-content: flex-end; gap: var(--space-3); border-top: var(--hairline-strong); padding-top: var(--space-5);">
+        <a href="admin.html" class="btn btn-secondary">
+          Batalkan
+        </a>
+        <button type="submit" class="btn btn-primary">
+          Simpan Dokumen ke Arsip
+        </button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="archive-footer">
+    <div class="container footer-inner">
+      <div>
+        &copy; 2026 Academic Archive Portal. Mahasiswa: Endru Aidil Fitriansyah (NIM 2503010054).
+      </div>
+      <div>
+        <a href="admin.html">Kembali ke Dashboard</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

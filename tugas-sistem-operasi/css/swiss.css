@@ -1,0 +1,792 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('./tokens.css');
+
+/* ===========================================================================
+   1. RESET & FOUNDATIONS
+   =========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+
+/* Accessible Focus States (R-32) */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===========================================================================
+   2. TYPOGRAPHIC UTILITIES (SWISS HEIRARCHY)
+   =========================================================================== */
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 700;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' on, 'zero' on;
+}
+
+.type-display {
+  font-family: var(--font-heading);
+  font-size: var(--text-display);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+.type-h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h1);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+.type-h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+  letter-spacing: var(--tracking-normal);
+}
+
+.type-h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+}
+
+.type-body {
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  color: var(--text-body);
+}
+
+.type-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-normal);
+}
+
+.type-micro {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-weight: 600;
+}
+
+/* ===========================================================================
+   3. LAYOUT & EDITORIAL CONTAINER
+   =========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+/* Editorial 12-Column Grid */
+.swiss-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-6);
+}
+
+/* ===========================================================================
+   4. EDITORIAL TOPBAR & NAVIGATION
+   =========================================================================== */
+.topbar {
+  border-bottom: var(--hairline);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: var(--space-4);
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+.topbar-badge {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  padding: 3px 8px;
+  background: var(--surface-muted);
+  border: var(--hairline);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text-primary);
+  background-color: var(--surface-muted);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: var(--hairline);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text-secondary);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* ===========================================================================
+   5. EDITORIAL ARCHIVE LIST (NO GENERIC CARDS)
+   =========================================================================== */
+.archive-header-strip {
+  display: grid;
+  grid-template-columns: 80px 100px 1fr 140px 110px 40px;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-muted);
+  border-bottom: var(--hairline-strong);
+}
+
+.archive-table-wrapper {
+  width: 100%;
+  border-top: var(--hairline);
+  border-bottom: var(--hairline);
+  background: var(--surface);
+}
+
+.archive-row {
+  display: grid;
+  grid-template-columns: 80px 100px 1fr 140px 110px 40px;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: var(--hairline);
+  transition: background-color var(--transition-fast);
+  cursor: pointer;
+}
+
+.archive-row:last-child {
+  border-bottom: none;
+}
+
+.archive-row:hover {
+  background-color: var(--surface-muted);
+}
+
+.archive-row .row-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.archive-row .row-meet {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.archive-row .row-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.archive-row .row-title small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.archive-row .row-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.archive-row .row-action {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--text-muted);
+}
+
+.archive-row:hover .row-action {
+  color: var(--accent);
+}
+
+/* ===========================================================================
+   6. EDITORIAL STATUS BADGES
+   =========================================================================== */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.badge-status.published {
+  background: var(--surface-muted);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+
+.badge-status.draft {
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  border: 1px dashed var(--border-strong);
+}
+
+.badge-status.review {
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
+}
+
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* ===========================================================================
+   7. BUTTONS & CONTROLS
+   =========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: var(--hairline-strong);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-muted);
+  border-color: var(--text-primary);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 1px solid var(--accent);
+}
+
+.btn-accent:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--status-review);
+  border: 1px solid var(--status-review);
+}
+
+.btn-danger:hover {
+  background: var(--status-review);
+  color: #FFFFFF;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: var(--text-micro);
+}
+
+/* ===========================================================================
+   8. FORM CONTROLS & DRAG ZONE
+   =========================================================================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-secondary);
+}
+
+.form-control {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  background: var(--surface);
+  color: var(--text-primary);
+  border: var(--hairline-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast);
+}
+
+.form-control:focus {
+  border-color: var(--border-focus);
+  outline: none;
+}
+
+textarea.form-control {
+  min-height: 120px;
+  line-height: var(--leading-normal);
+  resize: vertical;
+}
+
+/* Minimalist Swiss Dropzone */
+.dropzone {
+  border: 1px dashed var(--border-strong);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.dropzone:hover, .dropzone.dragover {
+  border-color: var(--accent);
+  background-color: var(--accent-subtle);
+}
+
+/* ===========================================================================
+   9. BREADCRUMB & METADATA BAR
+   =========================================================================== */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.breadcrumb-separator {
+  color: var(--border-strong);
+}
+
+.breadcrumb a {
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Metadata Bar */
+.meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  padding: var(--space-3) 0;
+  border-top: var(--hairline);
+  border-bottom: var(--hairline);
+  margin: var(--space-5) 0 var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.meta-item strong {
+  color: var(--text-primary);
+}
+
+.nav-prev-next {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+  border-top: var(--hairline);
+  padding-top: var(--space-6);
+}
+
+@media (max-width: 600px) {
+  .nav-prev-next {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================================================================
+   10. DOCUMENT PREVIEWER & FILE ATTACHMENTS
+   =========================================================================== */
+.doc-preview-box {
+  border: var(--hairline);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin: var(--space-6) 0;
+}
+
+.doc-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-muted);
+  border-bottom: var(--hairline);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+}
+
+.doc-preview-frame {
+  width: 100%;
+  height: 520px;
+  border: none;
+  background: #525659;
+}
+
+/* ===========================================================================
+   11. COMMENT & REVIEW BLOCK
+   =========================================================================== */
+.comment-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.comment-card {
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface);
+  border: var(--hairline);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+}
+
+.comment-author {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.comment-time {
+  color: var(--text-muted);
+  font-size: var(--text-micro);
+}
+
+/* ===========================================================================
+   12. FOOTER
+   =========================================================================== */
+.archive-footer {
+  margin-top: auto;
+  border-top: var(--hairline);
+  background: var(--surface);
+  padding: var(--space-6) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* ===========================================================================
+   13. RESPONSIVE BREAKPOINTS
+   =========================================================================== */
+/* Responsif untuk tabel di konten tugas & pembahasan */
+#detail-discussion table,
+.type-body table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  margin: var(--space-4) 0;
+}
+
+#detail-discussion table th,
+#detail-discussion table td,
+.type-body table th,
+.type-body table td {
+  padding: 8px 12px;
+  border: var(--hairline);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .topbar-inner {
+    height: auto;
+    min-height: 56px;
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .topbar-nav {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .topbar-badge {
+    display: none;
+  }
+
+  .archive-header-strip {
+    display: none;
+  }
+
+  .archive-row {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "meet num action"
+      "title title action"
+      "status date action";
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-4);
+    align-items: center;
+  }
+
+  .archive-row .row-num {
+    grid-area: num;
+    text-align: left;
+  }
+
+  .archive-row .row-meet {
+    grid-area: meet;
+  }
+
+  .archive-row .row-title {
+    grid-area: title;
+  }
+
+  .archive-row .row-date {
+    grid-area: date;
+    text-align: right;
+    font-size: var(--text-micro);
+  }
+
+  .archive-row .row-status {
+    grid-area: status;
+  }
+
+  .archive-row .row-action {
+    grid-area: action;
+    align-self: center;
+  }
+
+  .swiss-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .swiss-grid > * {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .archive-row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "meet action"
+      "title action"
+      "status action"
+      "date action";
+  }
+
+  .archive-row .row-num {
+    display: none;
+  }
+
+  .archive-row .row-date {
+    text-align: left;
+  }
+
+  .meta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+/* ===========================================================================
+   14. PRINT STYLESHEET
+   =========================================================================== */
+@media print {
+  .topbar, .archive-footer, .no-print, button, input, select {
+    display: none !important;
+  }
+
+  body, html {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  .container, .container-narrow {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .doc-preview-box, .comment-card, .archive-row {
+    break-inside: avoid;
+    border: 1px solid #CCCCCC !important;
+  }
+}
