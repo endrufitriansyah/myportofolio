@@ -407,11 +407,16 @@ button, input, textarea, select {
   background: var(--accent);
   color: var(--accent-contrast);
   border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
 .btn-accent:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
+  color: var(--accent-contrast);
+  box-shadow: 0 4px 12px rgba(229, 72, 38, 0.35);
+  transform: translateY(-1px);
 }
 
 .btn-danger {
@@ -486,6 +491,77 @@ textarea.form-control {
 .dropzone:hover, .dropzone.dragover {
   border-color: var(--accent);
   background-color: var(--accent-subtle);
+}
+
+/* ===========================================================================
+   8b. ARCHIVE TOOLBAR & FILTER
+   =========================================================================== */
+.archive-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-4);
+  background: var(--surface);
+  padding: var(--space-3) var(--space-4);
+  border: var(--hairline);
+  border-radius: var(--radius-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.toolbar-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.toolbar-search input {
+  min-width: 0;
+  width: 100%;
+}
+
+.toolbar-filter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 0 1 auto;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.toolbar-filter select {
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .toolbar-search {
+    flex: 1 1 100%;
+    width: 100%;
+    border-bottom: var(--hairline);
+    padding-bottom: var(--space-2);
+  }
+
+  .toolbar-filter {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .toolbar-filter select {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 /* ===========================================================================
@@ -672,16 +748,18 @@ textarea.form-control {
 
 @media (max-width: 768px) {
   .topbar-inner {
-    height: auto;
-    min-height: 56px;
-    padding-top: var(--space-2);
-    padding-bottom: var(--space-2);
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-4);
+    height: 56px;
+    padding-top: 0;
+    padding-bottom: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
   }
 
   .topbar-nav {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: center;
     gap: var(--space-2);
   }
 

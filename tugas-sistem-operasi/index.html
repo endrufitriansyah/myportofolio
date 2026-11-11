@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ACADEMIC ARCHIVE: Sistem Operasi (Endru Aidil Fitriansyah)</title>
+  <title>ARSIP AKADEMIK: Sistem Operasi (Endru Aidil Fitriansyah)</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../Asset/ft.png">
@@ -27,13 +27,13 @@
       <div class="topbar-brand">
         <a href="index.html" style="display: flex; align-items: center; gap: 8px;">
           <span style="display: inline-block; width: 10px; height: 10px; background: var(--accent);"></span>
-          <span style="font-size: 1.05rem; letter-spacing: -0.02em;">ACADEMIC ARCHIVE</span>
+          <span style="font-size: 1.05rem; letter-spacing: -0.02em;">ARSIP AKADEMIK</span>
         </a>
         <span class="topbar-badge">SISTEM OPERASI</span>
       </div>
 
       <nav class="topbar-nav">
-        <a href="../index.html" class="nav-link">Portofolio</a>
+        <!-- <a href="../index.html" class="nav-link">Portofolio</a> -->
         <a href="index.html" class="nav-link active">Arsip Publik</a>
         <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Ganti Mode Tampilan">
           <!-- Icon injected by theme.js -->
@@ -82,18 +82,18 @@
 
     <!-- SEARCH & FILTER TOOLBAR -->
     <section style="margin-bottom: var(--space-6);">
-      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); background: var(--surface); padding: var(--space-3) var(--space-4); border: var(--hairline); border-radius: var(--radius-sm);">
-        <div style="display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 240px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted);">
+      <div class="archive-toolbar">
+        <div class="toolbar-search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted); flex-shrink: 0;">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
           <input type="text" id="search-input" class="form-control" placeholder="Cari topik, nomor pertemuan, atau kata kunci materi..." style="border: none; padding: 6px 0; background: transparent;">
         </div>
 
-        <div style="display: flex; align-items: center; gap: var(--space-3);">
-          <label for="meeting-filter" class="type-micro" style="color: var(--text-secondary); white-space: nowrap;">TUGAS:</label>
-          <select id="meeting-filter" class="form-control" style="width: auto; padding: 6px 12px; font-family: var(--font-mono); font-size: var(--text-small);">
+        <div class="toolbar-filter">
+          <label for="meeting-filter" class="type-micro" style="color: var(--text-secondary); white-space: nowrap; flex-shrink: 0;">TUGAS:</label>
+          <select id="meeting-filter" class="form-control">
             <option value="all">Semua Tugas</option>
           </select>
         </div>
@@ -127,7 +127,7 @@
         &copy; 2026 Academic Archive. Sistem Operasi: Endru Aidil Fitriansyah (NIM 2503010054).
       </div>
       <div style="display: flex; gap: var(--space-4);">
-        <a href="../index.html">Portofolio Utama</a>
+        <!-- <a href="../index.html">Portofolio Utama</a> -->
         <a href="mailto:2503010054@unper.ac.id">Kontak Mahasiswa</a>
       </div>
     </div>

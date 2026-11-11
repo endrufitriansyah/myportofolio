@@ -36,11 +36,6 @@
       </div>
 
       <nav class="topbar-nav">
-        <a href="index.html" class="nav-link">&larr; Lihat Tampilan Publik</a>
-        <a href="review.html" class="nav-link">Komentar Dosen</a>
-        <a href="editor.html" class="btn btn-accent btn-sm">
-          + Tambah Tugas
-        </a>
         <button type="button" onclick="window.ArchiveAuth.logout()" class="btn btn-secondary btn-sm" title="Keluar dari sesi admin">
           Keluar
         </button>
@@ -62,7 +57,7 @@
           <h1 class="type-h1">Dashboard Tugas Perkuliahan</h1>
         </div>
         <div style="display: flex; gap: var(--space-3);">
-          <a href="editor.html" class="btn btn-primary">
+          <a href="editor.html" class="btn btn-accent" style="font-weight: 600;">
             + Tambah Dokumen Tugas Baru
           </a>
         </div>
@@ -85,11 +80,11 @@
           <span class="type-display" style="font-size: 2rem; color: var(--text-primary);" id="admin-stat-draft">0</span>
           <span class="type-meta" style="color: var(--text-secondary); font-size: var(--text-micro); display: block; margin-top: 4px;">Hanya admin</span>
         </div>
-        <div style="background: var(--surface); padding: var(--space-4) var(--space-5);">
-          <span class="type-micro" style="color: var(--accent); display: block;">KOMENTAR MASUK</span>
+        <a href="review.html" style="background: var(--surface); padding: var(--space-4) var(--space-5); display: block; text-decoration: none;" title="Buka Panel Komentar Dosen">
+          <span class="type-micro" style="color: var(--accent); display: block;">KOMENTAR MASUK &rarr;</span>
           <span class="type-display" style="font-size: 2rem;" id="admin-stat-comments">0</span>
           <span class="type-meta" style="color: var(--text-secondary); font-size: var(--text-micro); display: block; margin-top: 4px;">Komentar dosen</span>
-        </div>
+        </a>
       </div>
     </section>
 
