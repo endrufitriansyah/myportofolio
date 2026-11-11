@@ -4,6 +4,7 @@ Thumbs.db
 .DS_Store
 
 # Skrip Admin & Migrasi Privat
-tugas-sistem-operasi/setup-admin.sql
-tugas-sistem-operasi/schema.sql
+so/setup-admin.sql
+so/schema.sql
+so/*.sql
 *.env
