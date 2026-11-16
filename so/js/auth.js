@@ -8,7 +8,7 @@
   'use strict';
 
   // Email administrator resmi
-  const ADMIN_EMAIL = 'endrufitriansyah@gmail.com';
+  const ADMIN_EMAIL = 'endruaidil.fitriansyah@gmail.com';
 
   window.ArchiveAuth = {
     ADMIN_EMAIL: ADMIN_EMAIL,
